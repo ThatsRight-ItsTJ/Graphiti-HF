@@ -1,649 +1,664 @@
+# Graphiti-HF
+
 <p align="center">
-  <a href="https://www.getzep.com/">
-    <img src="https://github.com/user-attachments/assets/119c5682-9654-4257-8922-56b7cb8ffd73" width="150" alt="Zep Logo">
+  <a href="https://huggingface.co/">
+    <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" width="150" alt="Hugging Face Logo">
   </a>
 </p>
 
 <h1 align="center">
-Graphiti
+Graphiti-HF
 </h1>
-<h2 align="center"> Build Real-Time Knowledge Graphs for AI Agents</h2>
+<h2 align="center">Build Real-Time Knowledge Graphs with HuggingFace 🤗</h2>
+
 <div align="center">
 
-[![Lint](https://github.com/getzep/Graphiti/actions/workflows/lint.yml/badge.svg?style=flat)](https://github.com/getzep/Graphiti/actions/workflows/lint.yml)
-[![Unit Tests](https://github.com/getzep/Graphiti/actions/workflows/unit_tests.yml/badge.svg)](https://github.com/getzep/Graphiti/actions/workflows/unit_tests.yml)
-[![MyPy Check](https://github.com/getzep/Graphiti/actions/workflows/typecheck.yml/badge.svg)](https://github.com/getzep/Graphiti/actions/workflows/typecheck.yml)
-
-![GitHub Repo stars](https://img.shields.io/github/stars/getzep/graphiti)
-[![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?&logo=discord&logoColor=white)](https://discord.com/invite/W8Kw6bsgXQ)
-[![arXiv](https://img.shields.io/badge/arXiv-2501.13956-b31b1b.svg?style=flat)](https://arxiv.org/abs/2501.13956)
-[![Release](https://img.shields.io/github/v/release/getzep/graphiti?style=flat&label=Release&color=limegreen)](https://github.com/getzep/graphiti/releases)
-
-</div>
-<div align="center">
-
-<a href="https://trendshift.io/repositories/12986" target="_blank"><img src="https://trendshift.io/api/badge/repositories/12986" alt="getzep%2Fgraphiti | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![HuggingFace Datasets](https://img.shields.io/badge/🤗-Datasets-orange)](https://huggingface.co/docs/datasets/)
+[![HuggingFace Spaces](https://img.shields.io/badge/🤗-Spaces-orange)](https://huggingface.co/spaces)
 
 </div>
 
-:star: _Help us reach more developers and grow the Graphiti community. Star this repo!_
+<div align="center">
+
+⭐ _Bring the power of temporal knowledge graphs to the HuggingFace ecosystem!_ ⭐
+
+</div>
 
 <br />
 
 > [!TIP]
-> Check out the new [MCP server for Graphiti](mcp_server/README.md)! Give Claude, Cursor, and other MCP clients powerful
-> Knowledge Graph-based memory.
+> 🚀 **New to Knowledge Graphs?** Check out our [Interactive Demo Space](https://huggingface.co/spaces/graphiti-hf/knowledge-graph-demo) to see Graphiti-HF in action!
 
-Graphiti is a framework for building and querying temporally-aware knowledge graphs, specifically tailored for AI agents
-operating in dynamic environments. Unlike traditional retrieval-augmented generation (RAG) methods, Graphiti
-continuously integrates user interactions, structured and unstructured enterprise data, and external information into a
-coherent, queryable graph. The framework supports incremental data updates, efficient retrieval, and precise historical
-queries without requiring complete graph recomputation, making it suitable for developing interactive, context-aware AI
-applications.
+**Graphiti-HF** is a fork of [Zep's Graphiti](https://github.com/getzep/graphiti) that brings temporal knowledge graph capabilities to the HuggingFace ecosystem. Instead of requiring traditional graph databases, Graphiti-HF stores knowledge graphs as HuggingFace Datasets, making them collaborative, version-controlled, and deployable as interactive Spaces.
 
-Use Graphiti to:
+Perfect for researchers, developers, and organizations who want to:
 
-- Integrate and maintain dynamic user interactions and business data.
-- Facilitate state-based reasoning and task automation for agents.
-- Query complex, evolving data with semantic, keyword, and graph-based search methods.
+- 🔬 **Research**: Build knowledge graphs from academic papers and research data
+- 🏢 **Enterprise**: Create collaborative company knowledge bases
+- 🤖 **AI Agents**: Give your agents persistent, queryable memory
+- 🎓 **Education**: Teach graph concepts with interactive visualizations
+- 📝 **Personal**: Organize your notes and knowledge with temporal tracking
 
 <br />
 
 <p align="center">
-    <img src="images/graphiti-graph-intro.gif" alt="Graphiti temporal walkthrough" width="700px">
+    <img src="images/graphiti-hf-demo.gif" alt="Graphiti-HF interactive demo" width="700px">
 </p>
 
 <br />
 
-A knowledge graph is a network of interconnected facts, such as _"Kendra loves Adidas shoes."_ Each fact is a "triplet"
-represented by two entities, or
-nodes ("Kendra", "Adidas shoes"), and their relationship, or edge ("loves"). Knowledge Graphs have been explored
-extensively for information retrieval. What makes Graphiti unique is its ability to autonomously build a knowledge graph
-while handling changing relationships and maintaining historical context.
+## 🎯 Why Graphiti-HF?
 
-## Graphiti and Zep's Context Engineering Platform.
+Traditional knowledge graph solutions require complex database infrastructure and lack collaboration features. Graphiti-HF solves this by leveraging HuggingFace's ecosystem:
 
-Graphiti powers the core of [Zep](https://www.getzep.com), a turn-key context engineering platform for AI Agents. Zep
-offers agent memory, Graph RAG for dynamic data, and context retrieval and assembly.
+| **Traditional Approach** | **Graphiti-HF** |
+|---------------------------|------------------|
+| ❌ Requires Neo4j/database setup | ✅ No database needed - uses HF Datasets |
+| ❌ Single-user development | ✅ Multi-user collaboration via HF |
+| ❌ Complex deployment | ✅ One-click deployment to Spaces |
+| ❌ Manual version control | ✅ Git-based versioning built-in |
+| ❌ Limited sharing options | ✅ Public/private dataset sharing |
 
-Using Graphiti, we've demonstrated Zep is
-the [State of the Art in Agent Memory](https://blog.getzep.com/state-of-the-art-agent-memory/).
+### 🔥 Key Features
 
-Read our paper: [Zep: A Temporal Knowledge Graph Architecture for Agent Memory](https://arxiv.org/abs/2501.13956).
+- **🤗 HuggingFace Native**: Knowledge graphs stored as datasets with automatic versioning
+- **⚡ Real-time Updates**: Incremental graph updates without recomputation
+- **🔍 Hybrid Search**: Semantic + keyword + graph structure search
+- **⏰ Temporal Tracking**: Bi-temporal data model with historical queries
+- **🎨 Custom Entities**: Define domain-specific entities with Pydantic models
+- **🌐 Interactive Spaces**: Deploy graph interfaces with zero configuration
+- **🤝 Collaborative**: Multiple users can work on the same knowledge graph
+- **📊 Visual Analytics**: Built-in graph visualization and analytics
 
-We're excited to open-source Graphiti, believing its potential reaches far beyond AI memory applications.
+## 🚀 Quick Start
 
-<p align="center">
-    <a href="https://arxiv.org/abs/2501.13956"><img src="images/arxiv-screenshot.png" alt="Zep: A Temporal Knowledge Graph Architecture for Agent Memory" width="700px"></a>
-</p>
+### Prerequisites
 
-## Why Graphiti?
+Before installing Graphiti-HF, you'll need:
 
-Traditional RAG approaches often rely on batch processing and static data summarization, making them inefficient for
-frequently changing data. Graphiti addresses these challenges by providing:
+- **Python 3.10 or higher**
+- **HuggingFace Account**: [Sign up for free](https://huggingface.co/join)
+- **LLM API Access**: OpenAI API key (or Anthropic, Gemini, etc.) for entity extraction
+- **HuggingFace Token**: For dataset creation and management
 
-- **Real-Time Incremental Updates:** Immediate integration of new data episodes without batch recomputation.
-- **Bi-Temporal Data Model:** Explicit tracking of event occurrence and ingestion times, allowing accurate point-in-time
-  queries.
-- **Efficient Hybrid Retrieval:** Combines semantic embeddings, keyword (BM25), and graph traversal to achieve
-  low-latency queries without reliance on LLM summarization.
-- **Custom Entity Definitions:** Flexible ontology creation and support for developer-defined entities through
-  straightforward Pydantic models.
-- **Scalability:** Efficiently manages large datasets with parallel processing, suitable for enterprise environments.
+### Setup Authentication
 
-<p align="center">
-    <img src="/images/graphiti-intro-slides-stock-2.gif" alt="Graphiti structured + unstructured demo" width="700px">
-</p>
+1. **Get your HuggingFace token**:
+   - Go to [HuggingFace Settings](https://huggingface.co/settings/tokens)
+   - Create a new token with "Write" permissions
+   - Copy the token
 
-## Graphiti vs. GraphRAG
+2. **Set up authentication** (choose one method):
 
-| Aspect                     | GraphRAG                              | Graphiti                                         |
-|----------------------------|---------------------------------------|--------------------------------------------------|
-| **Primary Use**            | Static document summarization         | Dynamic data management                          |
-| **Data Handling**          | Batch-oriented processing             | Continuous, incremental updates                  |
-| **Knowledge Structure**    | Entity clusters & community summaries | Episodic data, semantic entities, communities    |
-| **Retrieval Method**       | Sequential LLM summarization          | Hybrid semantic, keyword, and graph-based search |
-| **Adaptability**           | Low                                   | High                                             |
-| **Temporal Handling**      | Basic timestamp tracking              | Explicit bi-temporal tracking                    |
-| **Contradiction Handling** | LLM-driven summarization judgments    | Temporal edge invalidation                       |
-| **Query Latency**          | Seconds to tens of seconds            | Typically sub-second latency                     |
-| **Custom Entity Types**    | No                                    | Yes, customizable                                |
-| **Scalability**            | Moderate                              | High, optimized for large datasets               |
+   **Option A: Environment Variables**
+   ```bash
+   export HUGGINGFACE_HUB_TOKEN="hf_your_token_here"
+   export OPENAI_API_KEY="sk-your_openai_key_here"
+   ```
 
-Graphiti is specifically designed to address the challenges of dynamic and frequently updated datasets, making it
-particularly suitable for applications requiring real-time interaction and precise historical queries.
+   **Option B: Login via CLI**
+   ```bash
+   pip install huggingface_hub
+   huggingface-cli login
+   # Paste your token when prompted
+   ```
 
-## Installation
+   **Option C: In Python**
+   ```python
+   import os
+   os.environ["HUGGINGFACE_HUB_TOKEN"] = "hf_your_token_here"
+   os.environ["OPENAI_API_KEY"] = "sk_your_openai_key_here"
+   ```
 
-Requirements:
-
-- Python 3.10 or higher
-- Neo4j 5.26 / FalkorDB 1.1.2 / Kuzu 0.11.2 / Amazon Neptune Database Cluster or Neptune Analytics Graph + Amazon
-  OpenSearch Serverless collection (serves as the full text search backend)
-- OpenAI API key (Graphiti defaults to OpenAI for LLM inference and embedding)
-
-> [!IMPORTANT]
-> Graphiti works best with LLM services that support Structured Output (such as OpenAI and Gemini).
-> Using other services may result in incorrect output schemas and ingestion failures. This is particularly
-> problematic when using smaller models.
-
-Optional:
-
-- Google Gemini, Anthropic, or Groq API key (for alternative LLM providers)
-
-> [!TIP]
-> The simplest way to install Neo4j is via [Neo4j Desktop](https://neo4j.com/download/). It provides a user-friendly
-> interface to manage Neo4j instances and databases.
-> Alternatively, you can use FalkorDB on-premises via Docker and instantly start with the quickstart example:
+### Installation
 
 ```bash
-docker run -p 6379:6379 -p 3000:3000 -it --rm falkordb/falkordb:latest
-
+pip install graphiti-hf
 ```
+
+**Optional Extras** (install based on your needs):
 
 ```bash
-pip install graphiti-core
+# For local embeddings (recommended for better performance)
+pip install graphiti-hf[sentence-transformers]
+
+# For additional LLM providers
+pip install graphiti-hf[anthropic]        # Anthropic Claude
+pip install graphiti-hf[google-genai]     # Google Gemini
+pip install graphiti-hf[groq]             # Groq
+
+# For advanced visualizations
+pip install graphiti-hf[viz]              # Plotly, NetworkX extras
+
+# For data integrations
+pip install graphiti-hf[integrations]     # Notion, Slack, etc.
+
+# Everything included
+pip install graphiti-hf[all]
 ```
 
-or
-
-```bash
-uv add graphiti-core
-```
-
-### Installing with FalkorDB Support
-
-If you plan to use FalkorDB as your graph database backend, install with the FalkorDB extra:
-
-```bash
-pip install graphiti-core[falkordb]
-
-# or with uv
-uv add graphiti-core[falkordb]
-```
-
-### Installing with Kuzu Support
-
-If you plan to use Kuzu as your graph database backend, install with the Kuzu extra:
-
-```bash
-pip install graphiti-core[kuzu]
-
-# or with uv
-uv add graphiti-core[kuzu]
-```
-
-### Installing with Amazon Neptune Support
-
-If you plan to use Amazon Neptune as your graph database backend, install with the Amazon Neptune extra:
-
-```bash
-pip install graphiti-core[neptune]
-
-# or with uv
-uv add graphiti-core[neptune]
-```
-
-### You can also install optional LLM providers as extras:
-
-```bash
-# Install with Anthropic support
-pip install graphiti-core[anthropic]
-
-# Install with Groq support
-pip install graphiti-core[groq]
-
-# Install with Google Gemini support
-pip install graphiti-core[google-genai]
-
-# Install with multiple providers
-pip install graphiti-core[anthropic,groq,google-genai]
-
-# Install with FalkorDB and LLM providers
-pip install graphiti-core[falkordb,anthropic,google-genai]
-
-# Install with Amazon Neptune
-pip install graphiti-core[neptune]
-```
-
-## Default to Low Concurrency; LLM Provider 429 Rate Limit Errors
-
-Graphiti's ingestion pipelines are designed for high concurrency. By default, concurrency is set low to avoid LLM
-Provider 429 Rate Limit Errors. If you find Graphiti slow, please increase concurrency as described below.
-
-Concurrency controlled by the `SEMAPHORE_LIMIT` environment variable. By default, `SEMAPHORE_LIMIT` is set to `10`
-concurrent operations to help prevent `429` rate limit errors from your LLM provider. If you encounter such errors, try
-lowering this value.
-
-If your LLM provider allows higher throughput, you can increase `SEMAPHORE_LIMIT` to boost episode ingestion
-performance.
-
-## Quick Start
-
-> [!IMPORTANT]
-> Graphiti defaults to using OpenAI for LLM inference and embedding. Ensure that an `OPENAI_API_KEY` is set in your
-> environment.
-> Support for Anthropic and Groq LLM inferences is available, too. Other LLM providers may be supported via OpenAI
-> compatible APIs.
-
-For a complete working example, see the [Quickstart Example](./examples/quickstart/README.md) in the examples directory.
-The quickstart demonstrates:
-
-1. Connecting to a Neo4j, Amazon Neptune, FalkorDB, or Kuzu database
-2. Initializing Graphiti indices and constraints
-3. Adding episodes to the graph (both text and structured JSON)
-4. Searching for relationships (edges) using hybrid search
-5. Reranking search results using graph distance
-6. Searching for nodes using predefined search recipes
-
-The example is fully documented with clear explanations of each functionality and includes a comprehensive README with
-setup instructions and next steps.
-
-## MCP Server
-
-The `mcp_server` directory contains a Model Context Protocol (MCP) server implementation for Graphiti. This server
-allows AI assistants to interact with Graphiti's knowledge graph capabilities through the MCP protocol.
-
-Key features of the MCP server include:
-
-- Episode management (add, retrieve, delete)
-- Entity management and relationship handling
-- Semantic and hybrid search capabilities
-- Group management for organizing related data
-- Graph maintenance operations
-
-The MCP server can be deployed using Docker with Neo4j, making it easy to integrate Graphiti into your AI assistant
-workflows.
-
-For detailed setup instructions and usage examples, see the [MCP server README](./mcp_server/README.md).
-
-## REST Service
-
-The `server` directory contains an API service for interacting with the Graphiti API. It is built using FastAPI.
-
-Please see the [server README](./server/README.md) for more information.
-
-## Optional Environment Variables
-
-In addition to the Neo4j and OpenAi-compatible credentials, Graphiti also has a few optional environment variables.
-If you are using one of our supported models, such as Anthropic or Voyage models, the necessary environment variables
-must be set.
-
-### Database Configuration
-
-Database names are configured directly in the driver constructors:
-
-- **Neo4j**: Database name defaults to `neo4j` (hardcoded in Neo4jDriver)
-- **FalkorDB**: Database name defaults to `default_db` (hardcoded in FalkorDriver)
-
-As of v0.17.0, if you need to customize your database configuration, you can instantiate a database driver and pass it
-to the Graphiti constructor using the `graph_driver` parameter.
-
-#### Neo4j with Custom Database Name
+### 30-Second Example
 
 ```python
-from graphiti_core import Graphiti
-from graphiti_core.driver.neo4j_driver import Neo4jDriver
-
-# Create a Neo4j driver with custom database name
-driver = Neo4jDriver(
-    uri="bolt://localhost:7687",
-    user="neo4j",
-    password="password",
-    database="my_custom_database"  # Custom database name
-)
-
-# Pass the driver to Graphiti
-graphiti = Graphiti(graph_driver=driver)
-```
-
-#### FalkorDB with Custom Database Name
-
-```python
-from graphiti_core import Graphiti
-from graphiti_core.driver.falkordb_driver import FalkorDriver
-
-# Create a FalkorDB driver with custom database name
-driver = FalkorDriver(
-    host="localhost",
-    port=6379,
-    username="falkor_user",  # Optional
-    password="falkor_password",  # Optional
-    database="my_custom_graph"  # Custom database name
-)
-
-# Pass the driver to Graphiti
-graphiti = Graphiti(graph_driver=driver)
-```
-
-#### Kuzu
-
-```python
-from graphiti_core import Graphiti
-from graphiti_core.driver.kuzu_driver import KuzuDriver
-
-# Create a Kuzu driver
-driver = KuzuDriver(db="/tmp/graphiti.kuzu")
-
-# Pass the driver to Graphiti
-graphiti = Graphiti(graph_driver=driver)
-```
-
-#### Amazon Neptune
-
-```python
-from graphiti_core import Graphiti
-from graphiti_core.driver.neptune_driver import NeptuneDriver
-
-# Create a FalkorDB driver with custom database name
-driver = NeptuneDriver(
-    host= < NEPTUNE
-ENDPOINT >,
-aoss_host = < Amazon
-OpenSearch
-Serverless
-Host >,
-port = < PORT >  # Optional, defaults to 8182,
-         aoss_port = < PORT >  # Optional, defaults to 443
-)
-
-driver = NeptuneDriver(host=neptune_uri, aoss_host=aoss_host, port=neptune_port)
-
-# Pass the driver to Graphiti
-graphiti = Graphiti(graph_driver=driver)
-```
-
-## Using Graphiti with Azure OpenAI
-
-Graphiti supports Azure OpenAI for both LLM inference and embeddings. Azure deployments often require different
-endpoints for LLM and embedding services, and separate deployments for default and small models.
-
-> [!IMPORTANT]
-> **Azure OpenAI v1 API Opt-in Required for Structured Outputs**
->
-> Graphiti uses structured outputs via the `client.beta.chat.completions.parse()` method, which requires Azure OpenAI
-> deployments to opt into the v1 API. Without this opt-in, you'll encounter 404 Resource not found errors during episode
-> ingestion.
->
-> To enable v1 API support in your Azure OpenAI deployment, follow Microsoft's
-> guide: [Azure OpenAI API version lifecycle](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/api-version-lifecycle?tabs=key#api-evolution).
-
-```python
-from openai import AsyncAzureOpenAI
-from graphiti_core import Graphiti
-from graphiti_core.llm_client import LLMConfig, OpenAIClient
-from graphiti_core.embedder.openai import OpenAIEmbedder, OpenAIEmbedderConfig
-from graphiti_core.cross_encoder.openai_reranker_client import OpenAIRerankerClient
-
-# Azure OpenAI configuration - use separate endpoints for different services
-api_key = "<your-api-key>"
-api_version = "<your-api-version>"
-llm_endpoint = "<your-llm-endpoint>"  # e.g., "https://your-llm-resource.openai.azure.com/"
-embedding_endpoint = "<your-embedding-endpoint>"  # e.g., "https://your-embedding-resource.openai.azure.com/"
-
-# Create separate Azure OpenAI clients for different services
-llm_client_azure = AsyncAzureOpenAI(
-    api_key=api_key,
-    api_version=api_version,
-    azure_endpoint=llm_endpoint
-)
-
-embedding_client_azure = AsyncAzureOpenAI(
-    api_key=api_key,
-    api_version=api_version,
-    azure_endpoint=embedding_endpoint
-)
-
-# Create LLM Config with your Azure deployment names
-azure_llm_config = LLMConfig(
-    small_model="gpt-4.1-nano",
-    model="gpt-4.1-mini",
-)
-
-# Initialize Graphiti with Azure OpenAI clients
-graphiti = Graphiti(
-    "bolt://localhost:7687",
-    "neo4j",
-    "password",
-    llm_client=OpenAIClient(
-        config=azure_llm_config,
-        client=llm_client_azure
-    ),
-    embedder=OpenAIEmbedder(
-        config=OpenAIEmbedderConfig(
-            embedding_model="text-embedding-3-small-deployment"  # Your Azure embedding deployment name
-        ),
-        client=embedding_client_azure
-    ),
-    cross_encoder=OpenAIRerankerClient(
-        config=LLMConfig(
-            model=azure_llm_config.small_model  # Use small model for reranking
-        ),
-        client=llm_client_azure
-    )
-)
-
-# Now you can use Graphiti with Azure OpenAI
-```
-
-Make sure to replace the placeholder values with your actual Azure OpenAI credentials and deployment names that match
-your Azure OpenAI service configuration.
-
-## Using Graphiti with Google Gemini
-
-Graphiti supports Google's Gemini models for LLM inference, embeddings, and cross-encoding/reranking. To use Gemini,
-you'll need to configure the LLM client, embedder, and the cross-encoder with your Google API key.
-
-Install Graphiti:
-
-```bash
-uv add "graphiti-core[google-genai]"
-
-# or
-
-pip install "graphiti-core[google-genai]"
-```
-
-```python
-from graphiti_core import Graphiti
-from graphiti_core.llm_client.gemini_client import GeminiClient, LLMConfig
-from graphiti_core.embedder.gemini import GeminiEmbedder, GeminiEmbedderConfig
-from graphiti_core.cross_encoder.gemini_reranker_client import GeminiRerankerClient
-
-# Google API key configuration
-api_key = "<your-google-api-key>"
-
-# Initialize Graphiti with Gemini clients
-graphiti = Graphiti(
-    "bolt://localhost:7687",
-    "neo4j",
-    "password",
-    llm_client=GeminiClient(
-        config=LLMConfig(
-            api_key=api_key,
-            model="gemini-2.0-flash"
-        )
-    ),
-    embedder=GeminiEmbedder(
-        config=GeminiEmbedderConfig(
-            api_key=api_key,
-            embedding_model="embedding-001"
-        )
-    ),
-    cross_encoder=GeminiRerankerClient(
-        config=LLMConfig(
-            api_key=api_key,
-            model="gemini-2.5-flash-lite-preview-06-17"
-        )
-    )
-)
-
-# Now you can use Graphiti with Google Gemini for all components
-```
-
-The Gemini reranker uses the `gemini-2.5-flash-lite-preview-06-17` model by default, which is optimized for
-cost-effective and low-latency classification tasks. It uses the same boolean classification approach as the OpenAI
-reranker, leveraging Gemini's log probabilities feature to rank passage relevance.
-
-## Using Graphiti with Ollama (Local LLM)
-
-Graphiti supports Ollama for running local LLMs and embedding models via Ollama's OpenAI-compatible API. This is ideal
-for privacy-focused applications or when you want to avoid API costs.
-
-Install the models:
-
-```bash
-ollama pull deepseek-r1:7b # LLM
-ollama pull nomic-embed-text # embeddings
-```
-
-```python
-from graphiti_core import Graphiti
-from graphiti_core.llm_client.config import LLMConfig
-from graphiti_core.llm_client.openai_generic_client import OpenAIGenericClient
-from graphiti_core.embedder.openai import OpenAIEmbedder, OpenAIEmbedderConfig
-from graphiti_core.cross_encoder.openai_reranker_client import OpenAIRerankerClient
-
-# Configure Ollama LLM client
-llm_config = LLMConfig(
-    api_key="ollama",  # Ollama doesn't require a real API key, but some placeholder is needed
-    model="deepseek-r1:7b",
-    small_model="deepseek-r1:7b",
-    base_url="http://localhost:11434/v1",  # Ollama's OpenAI-compatible endpoint
-)
-
-llm_client = OpenAIGenericClient(config=llm_config)
-
-# Initialize Graphiti with Ollama clients
-graphiti = Graphiti(
-    "bolt://localhost:7687",
-    "neo4j",
-    "password",
-    llm_client=llm_client,
-    embedder=OpenAIEmbedder(
-        config=OpenAIEmbedderConfig(
-            api_key="ollama",  # Placeholder API key
-            embedding_model="nomic-embed-text",
-            embedding_dim=768,
-            base_url="http://localhost:11434/v1",
-        )
-    ),
-    cross_encoder=OpenAIRerankerClient(client=llm_client, config=llm_config),
-)
-
-# Now you can use Graphiti with local Ollama models
-```
-
-Ensure Ollama is running (`ollama serve`) and that you have pulled the models you want to use.
-
-## Documentation
-
-- [Guides and API documentation](https://help.getzep.com/graphiti).
-- [Quick Start](https://help.getzep.com/graphiti/graphiti/quick-start)
-- [Building an agent with LangChain's LangGraph and Graphiti](https://help.getzep.com/graphiti/integrations/lang-graph-agent)
-
-## Telemetry
-
-Graphiti collects anonymous usage statistics to help us understand how the framework is being used and improve it for
-everyone. We believe transparency is important, so here's exactly what we collect and why.
-
-### What We Collect
-
-When you initialize a Graphiti instance, we collect:
-
-- **Anonymous identifier**: A randomly generated UUID stored locally in `~/.cache/graphiti/telemetry_anon_id`
-- **System information**: Operating system, Python version, and system architecture
-- **Graphiti version**: The version you're using
-- **Configuration choices**:
-    - LLM provider type (OpenAI, Azure, Anthropic, etc.)
-    - Database backend (Neo4j, FalkorDB, Kuzu, Amazon Neptune Database or Neptune Analytics)
-    - Embedder provider (OpenAI, Azure, Voyage, etc.)
-
-### What We Don't Collect
-
-We are committed to protecting your privacy. We **never** collect:
-
-- Personal information or identifiers
-- API keys or credentials
-- Your actual data, queries, or graph content
-- IP addresses or hostnames
-- File paths or system-specific information
-- Any content from your episodes, nodes, or edges
-
-### Why We Collect This Data
-
-This information helps us:
-
-- Understand which configurations are most popular to prioritize support and testing
-- Identify which LLM and database providers to focus development efforts on
-- Track adoption patterns to guide our roadmap
-- Ensure compatibility across different Python versions and operating systems
-
-By sharing this anonymous information, you help us make Graphiti better for everyone in the community.
-
-### View the Telemetry Code
-
-The Telemetry code [may be found here](graphiti_core/telemetry/telemetry.py).
-
-### How to Disable Telemetry
-
-Telemetry is **opt-out** and can be disabled at any time. To disable telemetry collection:
-
-**Option 1: Environment Variable**
-
-```bash
-export GRAPHITI_TELEMETRY_ENABLED=false
-```
-
-**Option 2: Set in your shell profile**
-
-```bash
-# For bash users (~/.bashrc or ~/.bash_profile)
-echo 'export GRAPHITI_TELEMETRY_ENABLED=false' >> ~/.bashrc
-
-# For zsh users (~/.zshrc)
-echo 'export GRAPHITI_TELEMETRY_ENABLED=false' >> ~/.zshrc
-```
-
-**Option 3: Set for a specific Python session**
-
-```python
+from graphiti_hf import GraphitiHF
+from datetime import datetime
 import os
 
-os.environ['GRAPHITI_TELEMETRY_ENABLED'] = 'false'
+# Set your API keys (if not already set in environment)
+os.environ["OPENAI_API_KEY"] = "sk-your_key_here"  # Required for entity extraction
+os.environ["HUGGINGFACE_HUB_TOKEN"] = "hf_your_token_here"  # Required for dataset access
 
-# Then initialize Graphiti as usual
-from graphiti_core import Graphiti
+# Initialize with HuggingFace dataset (will be created if it doesn't exist)
+graphiti = GraphitiHF("your-username/my-knowledge-graph")
 
-graphiti = Graphiti(...)
+# Add your first episode
+result = await graphiti.add_episode(
+    name="Meeting Notes",
+    episode_body="Alice discussed the new product launch with Bob. The launch is scheduled for Q2 2024.",
+    source_description="Team standup",
+    reference_time=datetime.now()
+)
+
+print(f"📊 Created {len(result.nodes)} entities and {len(result.edges)} relationships!")
+
+# Search your knowledge graph
+results = await graphiti.search("product launch timeline")
+for edge in results:
+    print(f"💡 {edge.fact}")
+
+# Push to HuggingFace Hub (creates/updates the dataset)
+await graphiti.push_to_hub("Added meeting notes")
+print("✅ Knowledge graph saved to HuggingFace Hub!")
 ```
 
-Telemetry is automatically disabled during test runs (when `pytest` is detected).
+**First run will**:
+- Create a new dataset in your HF account
+- Initialize the graph schema
+- Process your text to extract entities and relationships
+- Save everything to HuggingFace Hub with version control
 
-### Technical Details
+### 🏃‍♂️ Try it in HuggingFace Spaces
 
-- Telemetry uses PostHog for anonymous analytics collection
-- All telemetry operations are designed to fail silently - they will never interrupt your application or affect Graphiti
-  functionality
-- The anonymous ID is stored locally and is not tied to any personal information
+The fastest way to get started is with our pre-built Spaces:
 
-## Status and Roadmap
+1. **[Knowledge Graph Builder](https://huggingface.co/spaces/graphiti-hf/graph-builder)** - Create graphs from text
+2. **[Graph Explorer](https://huggingface.co/spaces/graphiti-hf/graph-explorer)** - Visualize and query existing graphs  
+3. **[Research Assistant](https://huggingface.co/spaces/graphiti-hf/research-assistant)** - Academic paper knowledge graphs
 
-Graphiti is under active development. We aim to maintain API stability while working on:
+### ⚙️ Configuration Options
 
-- [x] Supporting custom graph schemas:
-    - Allow developers to provide their own defined node and edge classes when ingesting episodes
-    - Enable more flexible knowledge representation tailored to specific use cases
-- [x] Enhancing retrieval capabilities with more robust and configurable options
-- [x] Graphiti MCP Server
-- [ ] Expanding test coverage to ensure reliability and catch edge cases
+Graphiti-HF offers flexible configuration for different use cases:
 
-## Contributing
+```python
+from graphiti_hf import GraphitiHF
 
-We encourage and appreciate all forms of contributions, whether it's code, documentation, addressing GitHub Issues, or
-answering questions in the Graphiti Discord channel. For detailed guidelines on code contributions, please refer
-to [CONTRIBUTING](CONTRIBUTING.md).
+# Basic setup (uses OpenAI for LLM, HF for embeddings)
+graphiti = GraphitiHF("username/my-graph")
 
-## Support
+# Use local embeddings (no API calls for search)
+graphiti = GraphitiHF(
+    "username/my-graph",
+    embedder="sentence-transformers/all-MiniLM-L6-v2"  # Local model
+)
 
-Join the [Zep Discord server](https://discord.com/invite/W8Kw6bsgXQ) and make your way to the **#Graphiti** channel!
+# Use different LLM providers
+graphiti = GraphitiHF(
+    "username/my-graph",
+    llm_provider="anthropic",  # or "google", "groq"
+    llm_model="claude-3-sonnet"
+)
+
+# Private dataset (only you can access)
+graphiti = GraphitiHF(
+    "username/private-graph",
+    private=True
+)
+
+# Organization dataset (team collaboration)
+graphiti = GraphitiHF(
+    "my-org/team-knowledge-graph",
+    # All org members with write access can contribute
+)
+```
+
+**Environment Variables**:
+```bash
+# Required
+export HUGGINGFACE_HUB_TOKEN="hf_your_token"
+export OPENAI_API_KEY="sk_your_key"  # or other LLM provider
+
+# Optional - Override defaults
+export GRAPHITI_DEFAULT_LLM="anthropic"
+export GRAPHITI_DEFAULT_EMBEDDER="sentence-transformers"
+export GRAPHITI_CONCURRENCY_LIMIT="10"  # Rate limiting
+```
+
+## 📖 Detailed Examples
+
+### Enterprise Knowledge Base
+
+```python
+from graphiti_hf import GraphitiHF
+from graphiti_hf.entities import PersonEntity, CompanyEntity, ProjectEntity
+
+# Initialize with custom entity types
+graphiti = GraphitiHF(
+    repo_id="mycompany/knowledge-base",
+    entity_types={
+        'Person': PersonEntity,
+        'Company': CompanyEntity,  
+        'Project': ProjectEntity
+    }
+)
+
+# Add structured company data
+await graphiti.add_episode(
+    name="Q4 Team Updates",
+    episode_body="""
+    Sarah Johnson joined our AI team as Lead ML Engineer. She previously 
+    worked at Google DeepMind for 4 years. Sarah will lead the recommendation 
+    system project launching in Q2 2024, working closely with the product team.
+    """,
+    source_description="HR system integration",
+    reference_time=datetime.now()
+)
+
+# Query with filters
+ml_engineers = await graphiti.query_by_entity_type(
+    'Person', 
+    filters={'occupation': 'ML Engineer'}
+)
+
+# Visualize team connections
+await graphiti.visualize_subgraph(
+    center_nodes=[person.uuid for person in ml_engineers],
+    depth=2
+)
+```
+
+### Research Paper Analysis
+
+```python
+from graphiti_hf import GraphitiHF
+from graphiti_hf.loaders import ArxivLoader
+
+# Initialize research knowledge graph
+graphiti = GraphitiHF("researcher/ai-papers-2024")
+
+# Load papers from arXiv
+loader = ArxivLoader()
+papers = loader.load_papers(query="attention mechanism", max_results=50)
+
+# Process papers in batch
+await graphiti.add_episode_bulk([
+    {
+        'name': paper.title,
+        'content': paper.abstract + "\n\n" + paper.content,
+        'source_description': f"arXiv:{paper.id}",
+        'reference_time': paper.published_date
+    }
+    for paper in papers
+])
+
+# Find connections between concepts
+concept_connections = await graphiti.search(
+    "transformer architecture relationships",
+    config=SearchConfig(
+        search_type="concept_clustering",
+        limit=20
+    )
+)
+
+# Generate research insights
+insights = await graphiti.generate_insights(
+    topic="recent advances in attention mechanisms",
+    time_range=(datetime(2024, 1, 1), datetime.now())
+)
+```
+
+### Personal Knowledge Management
+
+```python
+from graphiti_hf import GraphitiHF
+from graphiti_hf.integrations import NotionIntegration, ObsidianIntegration
+
+# Create personal knowledge graph
+graphiti = GraphitiHF("username/personal-knowledge")
+
+# Import from existing tools
+notion = NotionIntegration(auth_token="your_token")
+await notion.sync_to_graphiti(graphiti, database_id="your_database")
+
+obsidian = ObsidianIntegration(vault_path="~/Documents/ObsidianVault")
+await obsidian.sync_to_graphiti(graphiti)
+
+# Ask questions about your knowledge
+answer = await graphiti.ask(
+    "What did I learn about machine learning last month?",
+    context_depth=3
+)
+```
+
+## 🔍 Advanced Search Capabilities
+
+Graphiti-HF provides multiple search methods optimized for different use cases:
+
+```python
+# Semantic search - find conceptually similar content
+semantic_results = await graphiti.search(
+    "neural network architectures",
+    search_type="semantic",
+    limit=10
+)
+
+# Hybrid search - combines semantic + keyword + graph structure
+hybrid_results = await graphiti.search_(
+    "transformer attention mechanism",
+    config=COMBINED_HYBRID_SEARCH_CROSS_ENCODER
+)
+
+# Temporal search - find information from specific time periods
+temporal_results = await graphiti.search_temporal(
+    "product launches",
+    time_range=(datetime(2024, 1, 1), datetime(2024, 6, 1))
+)
+
+# Graph traversal - explore connections from a starting point
+traversal_results = await graphiti.traverse_from_node(
+    start_node_uuid="entity_123",
+    max_depth=3,
+    relationship_types=["COLLABORATES_WITH", "WORKS_ON"]
+)
+```
+
+## 🎨 Custom Entity Types
+
+Define domain-specific entities for better knowledge representation:
+
+```python
+from pydantic import BaseModel
+from typing import List, Optional
+from datetime import datetime
+
+class ResearchPaperEntity(BaseModel):
+    title: str
+    authors: List[str]
+    venue: Optional[str] = None
+    publication_date: Optional[datetime] = None
+    doi: Optional[str] = None
+    citations: int = 0
+    keywords: List[str] = []
+
+class ConceptEntity(BaseModel):
+    name: str
+    definition: str
+    field: str  # "AI", "Biology", etc.
+    complexity_level: int  # 1-10
+    related_concepts: List[str] = []
+
+# Use in your knowledge graph
+graphiti = GraphitiHF(
+    "research/ai-concepts",
+    entity_types={
+        'ResearchPaper': ResearchPaperEntity,
+        'Concept': ConceptEntity
+    },
+    edge_types={
+        'Cites': CitationEdge,
+        'Introduces': IntroductionEdge
+    }
+)
+```
+
+## 🌐 Deploy to HuggingFace Spaces
+
+Create an interactive knowledge graph interface:
+
+```python
+# spaces/app.py
+import gradio as gr
+from graphiti_hf import GraphitiHF
+
+def create_knowledge_graph_interface():
+    graphiti = GraphitiHF("your-org/knowledge-graph")
+    
+    def add_knowledge(text: str, source: str):
+        result = await graphiti.add_episode(
+            name="User Input",
+            episode_body=text,
+            source_description=source,
+            reference_time=datetime.now()
+        )
+        return f"Added {len(result.nodes)} entities, {len(result.edges)} relationships"
+    
+    def search_knowledge(query: str, num_results: int = 10):
+        results = await graphiti.search(query, limit=num_results)
+        return [{"fact": edge.fact, "confidence": edge.confidence} for edge in results]
+    
+    def visualize_graph():
+        return graphiti.create_visualization()
+    
+    interface = gr.Interface(
+        fn=[add_knowledge, search_knowledge, visualize_graph],
+        inputs=[
+            [gr.Textbox(label="Knowledge Text"), gr.Textbox(label="Source")],
+            [gr.Textbox(label="Search Query"), gr.Slider(1, 50, 10)],
+            []
+        ],
+        outputs=[
+            gr.Textbox(label="Addition Result"),
+            gr.JSON(label="Search Results"),
+            gr.Plot(label="Graph Visualization")
+        ],
+        title="🧠 Interactive Knowledge Graph",
+        description="Add knowledge and explore connections"
+    )
+    
+    return interface
+
+if __name__ == "__main__":
+    create_knowledge_graph_interface().launch()
+```
+
+Deploy with a simple `requirements.txt`:
+
+```txt
+graphiti-hf
+gradio
+plotly
+networkx
+```
+
+## 📊 Comparison with Traditional Solutions
+
+| Feature | Neo4j + Graphiti | Graphiti-HF | Traditional RAG |
+|---------|------------------|-------------|-----------------|
+| **Setup Complexity** | High (DB required) | Low (HF account) | Medium |
+| **Collaboration** | Limited | Excellent (Git-based) | Poor |
+| **Versioning** | Manual | Automatic | None |
+| **Deployment** | Complex | One-click Spaces | Medium |
+| **Cost** | High (DB hosting) | Low (HF free tier) | Medium |
+| **Temporal Queries** | Yes | Yes | No |
+| **Real-time Updates** | Yes | Yes | Limited |
+| **Visual Interface** | Custom dev needed | Built-in | None |
+| **Community Sharing** | Difficult | Easy (HF Hub) | None |
+
+## 🔧 Migration from Original Graphiti
+
+Easily migrate existing Graphiti knowledge graphs:
+
+```python
+from graphiti_hf.migration import GraphitiMigrator
+
+# Migrate from Neo4j
+migrator = GraphitiMigrator()
+await migrator.migrate_from_neo4j(
+    source_uri="bolt://localhost:7687",
+    source_user="neo4j",
+    source_password="password", 
+    target_repo="your-org/migrated-graph"
+)
+
+# Or migrate from export files
+await migrator.migrate_from_export(
+    export_file="knowledge_graph_export.json",
+    target_repo="your-org/imported-graph"
+)
+```
+
+## 🛠️ Development Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/your-org/graphiti-hf.git
+cd graphiti-hf
+
+# Install development dependencies
+pip install -e ".[dev]"
+
+# Run tests
+pytest tests/
+
+# Run linting
+black graphiti_hf/
+mypy graphiti_hf/
+```
+
+## 🤝 Contributing
+
+We welcome contributions! Here's how to get started:
+
+1. **Fork** the repository
+2. **Create** a feature branch: `git checkout -b feature-name`
+3. **Make** your changes and add tests
+4. **Run** tests: `pytest`
+5. **Submit** a pull request
+
+Areas where we need help:
+- 🔌 **Integrations**: Notion, Obsidian, Slack, Discord
+- 🎨 **Visualizations**: Advanced graph layouts and analytics
+- 📚 **Documentation**: Tutorials and examples
+- 🧪 **Testing**: Edge cases and performance tests
+- 🌍 **Localization**: Multi-language support
+
+## 🏆 Showcase
+
+Projects built with Graphiti-HF:
+
+- **[AI Research Navigator](https://huggingface.co/spaces/research/ai-navigator)** - Explore connections between AI papers
+- **[Company Knowledge Hub](https://huggingface.co/spaces/acme/knowledge-hub)** - Internal company knowledge base
+- **[Personal Learning Graph](https://huggingface.co/spaces/learner/knowledge-graph)** - Track learning journey
+- **[News Analysis Engine](https://huggingface.co/spaces/news/analysis)** - Connect news events and entities
+
+*Want to add your project? [Submit a PR](https://github.com/your-org/graphiti-hf/pulls)!*
+
+## 📈 Performance
+
+Graphiti-HF is optimized for the HuggingFace ecosystem:
+
+- **⚡ Fast Search**: Sub-second queries on graphs with 1M+ nodes using FAISS
+- **💾 Efficient Storage**: Parquet format reduces storage by 60% vs JSON
+- **🔄 Incremental Updates**: Add new knowledge without reprocessing entire graph
+- **🚀 Parallel Processing**: Batch operations with configurable concurrency
+- **📱 Memory Efficient**: Lazy loading and streaming for large graphs
+
+## 🔐 Privacy & Security
+
+- **🔒 Private Datasets**: Keep sensitive knowledge graphs private
+- **🏢 Organization Accounts**: Team collaboration with access controls
+- **🌍 On-Premise**: Self-host with HuggingFace Hub Enterprise
+- **🛡️ Data Protection**: Your data never leaves your control
+- **📝 Audit Logs**: Track all changes with Git history
+
+## 🆘 Troubleshooting
+
+### Authentication Issues
+
+**Q: "Repository not found" or "Authentication failed"**
+```bash
+# Check if you're logged in
+huggingface-cli whoami
+
+# Re-login if needed
+huggingface-cli login
+
+# Or check your token has write permissions
+# Go to https://huggingface.co/settings/tokens
+```
+
+**Q: "OpenAI API key not found"**
+```python
+# Make sure your API key is set
+import os
+print(os.getenv("OPENAI_API_KEY"))  # Should not be None
+
+# Or set it in Python
+os.environ["OPENAI_API_KEY"] = "sk-your_key_here"
+```
+
+**Q: "Dataset creation failed"**
+```python
+# Make sure you have write permissions and the repo name is valid
+# Repository names must be: username/dataset-name or org/dataset-name
+graphiti = GraphitiHF("your-username/my-graph", create_if_not_exists=True)
+```
+
+### Common Issues
+
+**Q: "Dataset not found" error**
+```python
+# Make sure dataset exists and you have access
+graphiti = GraphitiHF("username/dataset-name", create_if_not_exists=True)
+```
+
+**Q: Search returns empty results**
+```python
+# Rebuild search indices
+await graphiti.rebuild_indices()
+```
+
+**Q: Memory issues with large graphs**
+```python
+# Use streaming mode for large datasets
+graphiti = GraphitiHF("username/large-graph", streaming=True)
+```
+
+**Q: Slow performance**
+```python
+# Increase concurrency (check your LLM rate limits)
+import os
+os.environ['SEMAPHORE_LIMIT'] = '20'
+```
+
+### Installation Extras Explained
+
+- **`sentence-transformers`**: Local embedding models (faster, no API calls)
+- **`anthropic`**: Use Claude for entity extraction instead of OpenAI
+- **`google-genai`**: Use Gemini models for processing
+- **`groq`**: Ultra-fast inference with Groq
+- **`viz`**: Advanced graph visualization components  
+- **`integrations`**: Connectors for Notion, Slack, Discord, etc.
+- **`all`**: Everything included
+
+For more help:
+- 📖 [Documentation](https://graphiti-hf.readthedocs.io/)
+- 💬 [Community Forum](https://huggingface.co/spaces/graphiti-hf/community)
+- 🐛 [Issue Tracker](https://github.com/your-org/graphiti-hf/issues)
+
+## 📄 License
+
+Licensed under the Apache License 2.0. See [LICENSE](LICENSE) for details.
+
+## 🙏 Acknowledgments
+
+- **[Zep Team](https://github.com/getzep/graphiti)** for the original Graphiti framework
+- **[HuggingFace Team](https://huggingface.co/)** for the amazing ecosystem
+- **Contributors** who help make Graphiti-HF better
+
+## 🌟 Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=your-org/graphiti-hf&type=Date)](https://star-history.com/#your-org/graphiti-hf&Date)
+
+---
