@@ -23,8 +23,29 @@ from .graph_traversal import (
     TraversalResult
 )
 from .hybrid_search import HybridSearchEngine, HybridSearchConfig
+from .advanced_config import (
+    AdvancedSearchConfig,
+    SearchMethod,
+    RankingStrategy,
+    SemanticSearchConfig,
+    KeywordSearchConfig,
+    GraphSearchConfig,
+    TemporalSearchConfig,
+    HybridSearchConfig as AdvancedHybridSearchConfig,
+    PerformanceConfig,
+    DomainConfig,
+    TemporalConfig
+)
+from .integration import (
+    SearchEngineIntegrator,
+    create_semantic_search_config,
+    create_graph_search_config,
+    create_hybrid_search_config,
+    create_domain_specific_config
+)
 
 __all__ = [
+    # Original components
     "VectorSearchEngine",
     "GraphTraversalEngine",
     "TraversalConfig",
@@ -32,5 +53,25 @@ __all__ = [
     "EdgeFilterType",
     "TraversalResult",
     "HybridSearchEngine",
-    "HybridSearchConfig"
+    "HybridSearchConfig",
+    
+    # Advanced search components
+    "AdvancedSearchConfig",
+    "SearchMethod",
+    "RankingStrategy",
+    "SemanticSearchConfig",
+    "KeywordSearchConfig",
+    "GraphSearchConfig",
+    "TemporalSearchConfig",
+    "AdvancedHybridSearchConfig",
+    "PerformanceConfig",
+    "DomainConfig",
+    "TemporalConfig",
+    
+    # Integration components
+    "SearchEngineIntegrator",
+    "create_semantic_search_config",
+    "create_graph_search_config",
+    "create_hybrid_search_config",
+    "create_domain_specific_config"
 ]
