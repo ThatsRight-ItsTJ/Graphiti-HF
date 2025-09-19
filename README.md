@@ -28,8 +28,8 @@ Graphiti-HF
 
 <br />
 
-> [!TIP]
-> 🚀 **New to Knowledge Graphs?** Check out our [Interactive Demo Space](https://huggingface.co/spaces/graphiti-hf/knowledge-graph-demo) to see Graphiti-HF in action!
+> [!WARNING]
+> 🚧 This is actively being developed, so expect issues. Currently focusing on compatibility with the HuggingFace API/MCP. 🚧
 
 **Graphiti-HF** is a fork of [Zep's Graphiti](https://github.com/getzep/graphiti) that brings temporal knowledge graph capabilities to the HuggingFace ecosystem. Instead of requiring traditional graph databases, Graphiti-HF stores knowledge graphs as HuggingFace Datasets, making them collaborative, version-controlled, and deployable as interactive Spaces.
 
